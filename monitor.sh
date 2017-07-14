@@ -29,7 +29,7 @@ then
 else
         for q in `eval echo {0..$((${#mail_rp[@]}-1))}`
         do
-                if [[ ! "${mail_rp[q]}" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[$
+                if [[ ! "${mail_rp[q]}" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]
                 then
                         echo "mail: syntax error"
                         exit 1
