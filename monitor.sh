@@ -3,7 +3,7 @@
 #get array from value of variable
 IFS="," read -r -a dir_mon <<< "$dir_monitor"
 IFS="," read -r -a mail_rp <<< "$mail"
-IFS="," read -r -a fr_rp <<< "$frequency_report"
+read -r -a fr_rp <<< "$frequency_report"
 IFS="," read -r -a fr_bu <<< "$frequency_backup_rp"
 #check value
 #directory monitor
@@ -36,7 +36,13 @@ else
                 fi
         done
 fi
-#frequency report
+#frequency check
+if [[ ! "$frequency_check" =~ ^[0-9]+$ ]] || [[ $frequency_check =~ ^0+$ ]] || [ -z $frequency_check ]
+then
+        echo "frequency check: syntax error"
+        exit 1
+fi
+
 
 
 

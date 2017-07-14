@@ -1,19 +1,35 @@
 #nhap cac bien
-echo -n "mail_rp="
-read -a mail_rp
-
-if [ ${#mail_rp[@]} == 0 ]
+echo -n "frequency check"
+read frequency_check
+if [[ ! "$frequency_check" =~ ^[0-9]+$ ]] || [[ $frequency_check =~ ^0+$ ]] || [ -z $frequency_check ]
 then
-	echo "mail adress not found"
+	echo "frequency check: syntax error"
 	exit 1
-else
-	for q in `eval echo {0..$((${#mail_rp[@]}-1))}`
-	do
-		if [[ ! "${mail_rp[q]}" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]
-		then
-			echo "mail: syntax error"
-			exit 1
-		fi
-	done
 fi
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#check frequency report
+#if [ ${#fr_rp[@]} -ne 5 ]
+#then
+#	echo "fr_rp sai"
+#	exit 1
+#else
+#	IFS="," read -r -a min <<< ${fr_rp[@]}
+#fi
