@@ -22,9 +22,23 @@ else
         done
 fi
 #mail
-for i in `eval echo {0..${#mail}}`
-do
-  
-done
+if [ ${#mail_rp[@]} == 0 ]
+then
+        echo "mail adress not found"
+        exit 1
+else
+        for q in `eval echo {0..$((${#mail_rp[@]}-1))}`
+        do
+                if [[ ! "${mail_rp[q]}" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[$
+                then
+                        echo "mail: syntax error"
+                        exit 1
+                fi
+        done
+fi
+#frequency report
+
+
+
 tbegin=$(date +%s)
 
