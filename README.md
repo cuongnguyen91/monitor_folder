@@ -18,4 +18,19 @@ Note
  + XXXX:ky tu hoa, thuong, so va ._%+-
  + YYY: ky tu hoa, thuong,so va .-
  + ZZZ: ky tu hoa, thuong va chi gioi han trong 2-4 ky tu
-
+*thu muc chua file report:
+-chi 1 thu muc
+-thu muc co ton tai, co quyen truy cap.
+*tan so check:
+-chi tinh theo phut.
+*tan so report:
+-Cu phap tuong tu nhu crontab.
+-phai du 5 doi so.
+	+phut chi duoc dung so.
+	+gio duoc dung so va dau *.
+-phut:
+	+khong co dau *
+	+khong chap nhan dau -
+	+duoc dung dau , => co nhieu doi so, lon nhat 5 doi so.
+	+chi gioi han 0-23
+-gio

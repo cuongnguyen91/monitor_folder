@@ -42,6 +42,15 @@ then
         echo "frequency check: syntax error"
         exit 1
 fi
+#kiem tra thu muc chua file report
+if [ -z $dir_report ] || [ ! -d "$dir_report" ]
+then
+        echo "file config sai"
+        exit 1
+fi
+
+
+
 
 
 
