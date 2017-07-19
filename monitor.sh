@@ -1,8 +1,5 @@
 #!/bin/bash
 . /monitor.config
-<<<<<<< HEAD
-#kiem tra bien
-=======
 #get array from value of variable
 IFS="," read -r -a dir_mon <<< "$dir_monitor"
 IFS="," read -r -a mail_rp <<< "$mail"
@@ -48,7 +45,6 @@ fi
 
 
 
->>>>>>> f300402410649692f01232ace660804bf542a367
 
 tbegin=$(date +%s)
 
