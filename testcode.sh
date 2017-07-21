@@ -57,7 +57,7 @@ else
 	then
 		if [[ "${fr_rp[2]}" == *\** ]] && [[ "${#fr_rp[2]}" -ne 1 ]]
 		then
-			echo "so thang: neu dung dau * thi chi duoc dat 1 dau *"
+			echo "so ngay: neu dung dau * thi chi duoc dat 1 dau *"
 			exit 1
 		else
 			IFS="," read -r -a domrp <<< "${fr_rp[2]}"
@@ -67,11 +67,41 @@ else
 				do
 					unset subdomrp
 					IFS="-" read -r -a subdomrp <<< "${domrp[y]}"
-					if [[ ${#subdomrp[@]} -gt 2 || ${subdomrp[0]} -gt 23 || ${subhourrp[1]} -gt 23 || -z "${subhourrp[0]}" || ( ${#subhourrp[@]} -eq 2 && -z "${subhourrp[1]}" ) ]]
+					if [[ ${#subdomrp[@]} -gt 2 || ${subdomrp[0]} -lt 1 || ${subdomrp[0]} -gt 31 || ( ! -z ${subdomrp[1]} && (${subdomrp[1]} -lt 1 || ${subdomrp[1]} -gt 31)) || -z "${subdomrp[0]}" || ( ${#subdomrp[@]} -eq 2 && -z "${subdomrp[1]}" ) ]]
+					then
+						echo "so ngay: chi duoc dang x,y hoac x-y, chi tu 1-31"
+						exit 1
+					fi
+				done
+			fi
+		fi
+	else
+		echo "so ngay: sai cu phap"
+		exit 1
+	fi
+#kiem tra thang
+	if [[ "${fr_rp[3]}" =~ ^[0-9a-z*,-]{1,50}$ ]]
+	then
+		if [[ "${fr_rp[3]}" == *\** ]] && [[ "${#fr_rp[3]}" -ne 1 ]]
+		then
+                        echo "so thang: neu dung dau * thi chi duoc dat 1 dau *"
+                        exit 1
+		else
+			IFS="," read -r -a monthrp <<< "${fr_rp[3]}"
+			if [ "${monthrp[0]}" != \* ]
+			then
+				for w in `eval echo {0..$((${#monthrp[@]}-1))}`
+				do
+					unset submonthrp
+					IFS="-" read -r -a submonthrp <<< "${monthrp[w]}"
+					if [[  ]]
 					then
 					fi
 				done
 			fi
 		fi
+	else
+		echo "so thang: sai cu phap"
+                exit 1
 	fi
 fi
