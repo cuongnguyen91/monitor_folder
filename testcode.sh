@@ -71,7 +71,7 @@ else
 					then
 						echo "so ngay: chi duoc dang x,y hoac x-y, chi tu 1-31"
 						exit 1
-					fi
+					fi 2>/dev/null
 				done
 			fi
 		fi
@@ -94,10 +94,10 @@ else
 				do
 					unset submonthrp
 					IFS="-" read -r -a submonthrp <<< "${monthrp[w]}"
-					if [[  ]]
+					if [[ ${submonthrp[0]} -lt 1 || ${submonthrp[0]} -gt 31 || ! "${submonthrp[0]}" =~  ]]
 					then
-					fi
-				done
+					fi 2>/dev/null
+				done 
 			fi
 		fi
 	else
