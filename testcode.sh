@@ -94,8 +94,10 @@ else
 				do
 					unset submonthrp
 					IFS="-" read -r -a submonthrp <<< "${monthrp[w]}"
-					if [[ ${submonthrp[0]} -lt 1 || ${submonthrp[0]} -gt 31 || ! "${submonthrp[0]}" =~  ]]
+					if [ ${submonthrp[0]} -lt 1 -o ${submonthrp[0]} -gt 12 ]
 					then
+						echo "so thang: chi tu 1-12 hoac dang viet tat cua Tieng Anh"
+						exit 1
 					fi 2>/dev/null
 				done 
 			fi
@@ -105,3 +107,6 @@ else
                 exit 1
 	fi
 fi
+
+
+# "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|[0-9]+ 
