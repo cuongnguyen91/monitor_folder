@@ -1,4 +1,4 @@
-#nhap cac bien
+nhap cac bien
 echo -n "fr_rp"
 read -a fr_rp
 
@@ -94,11 +94,10 @@ else
 				do
 					unset submonthrp
 					IFS="-" read -r -a submonthrp <<< "${monthrp[w]}"
-					if [ ${submonthrp[0]} -lt 1 -o ${submonthrp[0]} -gt 12 ]
+					if [[ "${monthrp[w]}" =~ ^[1-9]{1,2}-[1-9]{1,2}$|^10-[1-9]{1,2}$|^[1-9]{1,2}-10$|^[1-9]{1,2}$|10 ]] 
 					then
-						echo "so thang: chi tu 1-12 hoac dang viet tat cua Tieng Anh"
-						exit 1
-					fi 2>/dev/null
+						
+					fi 
 				done 
 			fi
 		fi
