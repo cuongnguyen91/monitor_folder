@@ -1,4 +1,5 @@
-nhap cac bien
+#!/bin/bash
+#nhap cac bien
 echo -n "fr_rp"
 read -a fr_rp
 
@@ -94,9 +95,33 @@ else
 				do
 					unset submonthrp
 					IFS="-" read -r -a submonthrp <<< "${monthrp[w]}"
-					if [[ "${monthrp[w]}" =~ ^[1-9]{1,2}-[1-9]{1,2}$|^10-[1-9]{1,2}$|^[1-9]{1,2}-10$|^[1-9]{1,2}$|10 ]] 
+					if [ ${#submonthrp[@]} -eq 1 ]
 					then
-						
+						if [[ ! "${submonthrp[0]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|^1$|^2$|^3$|^4$|^5$|^6$|^7$|^7$|^9$|10|11|12 ]]
+						then
+							echo "so thang sai 1"
+						fi
+					elif [ ${#submonthrp[@]} -eq 2 ]
+					then
+						case "${submonthrp[0]}" in
+						jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec)
+							if [[ ! "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec ]]
+							then
+								echo "so thang sai 2 chu"
+							fi
+						;;
+						1|2|3|4|5|6|7|8|9|10|11|12)
+                                                        if [[ ! "${submonthrp[1]}" =~ ^1$|^2$|^3$|^4$|^5$|^6$|^7$|^8$|^9$|10|11|12 ]]
+                                                        then
+                                                               echo "so thang sai 2 so"
+                                                        fi
+						;;
+						*)
+							echo "so thang sai"
+						;;
+						esac
+					else
+						echo "so thang sai 2"
 					fi 
 				done 
 			fi
@@ -106,6 +131,4 @@ else
                 exit 1
 	fi
 fi
-
-
-# "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|[0-9]+ 
+# "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|[0-9]+
