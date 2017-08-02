@@ -130,5 +130,10 @@ else
 		echo "so thang: sai cu phap"
                 exit 1
 	fi
+#kiem tra ngay trong tuan (0-6)(sunday = 0)
+	if
+	then
+	fi
 fi
-# "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|[0-9]+
+#mon|tue|wed|thu|fri|sat|sun
+
