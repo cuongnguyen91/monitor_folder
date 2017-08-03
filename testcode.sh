@@ -100,6 +100,7 @@ else
 						if [[ ! "${submonthrp[0]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec|^1$|^2$|^3$|^4$|^5$|^6$|^7$|^7$|^9$|10|11|12 ]]
 						then
 							echo "so thang sai 1"
+							exit 1
 						fi
 					elif [ ${#submonthrp[@]} -eq 2 ]
 					then
@@ -108,20 +109,24 @@ else
 							if [[ ! "${submonthrp[1]}" =~ jan|feb|mar|apr|may|june|july|aug|sept|oct|nov|dec ]]
 							then
 								echo "so thang sai 2 chu"
+								exit 1
 							fi
 						;;
 						1|2|3|4|5|6|7|8|9|10|11|12)
                                                         if [[ ! "${submonthrp[1]}" =~ ^1$|^2$|^3$|^4$|^5$|^6$|^7$|^8$|^9$|10|11|12 ]]
                                                         then
-                                                               echo "so thang sai 2 so"
+								echo "so thang sai 2 so"
+								exit 1
                                                         fi
 						;;
 						*)
 							echo "so thang sai"
+							exit 1
 						;;
 						esac
 					else
 						echo "so thang sai 2"
+						exit 1
 					fi 
 				done 
 			fi
@@ -131,8 +136,12 @@ else
                 exit 1
 	fi
 #kiem tra ngay trong tuan (0-6)(sunday = 0)
-	if
+	if [[ "${fr_rp[4]}" =~ ^[0-6a-z,*-]+$ ]]
 	then
+		
+	else
+		echo "so ngay trong tuan sai"
+		exit 1
 	fi
 fi
 #mon|tue|wed|thu|fri|sat|sun
