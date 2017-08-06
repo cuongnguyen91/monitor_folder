@@ -113,7 +113,7 @@ else
 							fi
 						;;
 						1|2|3|4|5|6|7|8|9|10|11|12)
-                                                        if [[ ! "${submonthrp[1]}" =~ ^1$|^2$|^3$|^4$|^5$|^6$|^7$|^8$|^9$|10|11|12 ]]
+                                                        if [[ ! "${submonthrp[1]}" =~ ^1$|^2$|^3$|^4$|^5$|^6$|^7$|^8$|^9$|^10$|^11$|^12$ ]]
                                                         then
 								echo "so thang sai 2 so"
 								exit 1
@@ -138,11 +138,59 @@ else
 #kiem tra ngay trong tuan (0-6)(sunday = 0)
 	if [[ "${fr_rp[4]}" =~ ^[0-6a-z,*-]+$ ]]
 	then
-		
+		if [[ "${fr_rp[4]}" == *\** ]] && [[ "${#fr_rp[4]}" -ne 1 ]]
+		then
+                        echo "so dow: neu dung dau * thi chi duoc dat 1 dau *"
+                        exit 1
+		else
+			IFS="," read -r -a dowrp <<< "${fr_rp[4]}"
+			if [ "${dowrp[0]}" != \* ]
+			then
+				for e in `eval echo {0..$((${#dowrp[@]}-1))}`
+				do
+					unset subdowrp
+					IFS="-" read -r -a subdowrp <<< "${dowrp[e]}"
+					if [ ${#subdowrp[@]} -eq 1 ]
+					then
+						if [[ ! "${subdowrp[0]}" =~ mon|tue|wed|thu|fri|sat|sun|[0-6] ]]
+						then
+							echo "so ngay trong tuan sai 1" 
+							exit 1
+						fi
+					elif [ ${#subdowrp[@]} -eq 2 ]
+					then
+						case "${subdowrp[0]}" in
+						1|2|3|4|5|6|0)
+							if [[ ! "${subdowrp[1]}" =~ ^[0-6]$ ]]
+	        	                                then
+                                        	                echo "so ngay trong tuan sai 2"
+                                	                        exit 1
+                        	                        fi
+						;;
+						mon|tue|wed|thu|fri|sat|sun)
+                                                       if [[ ! "${subdowrp[1]}" =~ mon|tue|wed|thu|fri|sat|sun ]]
+                                                        then
+                                                                echo "so ngay trong tuan sai 3"
+                                                                exit 1
+                                                        fi
+      						
+						;;
+						*)
+	                                                echo "so ngay trong tuan sai 4"
+        	                                        exit 1
+						;;
+						esac
+					else
+                                                  	echo "so ngay trong tuan sai 5"
+                                                        exit 1
+
+					fi					
+				done	
+			fi
+		fi
 	else
-		echo "so ngay trong tuan sai"
+		echo "so ngay trong tuan sai 6"
 		exit 1
 	fi
 fi
 #mon|tue|wed|thu|fri|sat|sun
-
