@@ -239,7 +239,7 @@ else
 		exit 1
 	fi
 fi
-#check size_backup_rp
+#--------------check size_backup_rp
 if [[ "$size_backup_rp" =~ ^[0-9]+$ ]]
 then
 	if [ $size_backup_rp -lt 3 ]
