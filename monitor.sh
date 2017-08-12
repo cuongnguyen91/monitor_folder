@@ -446,4 +446,21 @@ then
 		fi
 	fi
 fi
+#========================================================================
+#bat dau vao chuong trinh
+#tao file so sanh dau tien
+{
+ls -la ${dir_mon[@]}| grep -v ^total | grep -v "\ \.$" | grep -v "\ \.\."
+} >> "$dir_report/rpfile1"
+#vao vong lap
+while [ : ]
+do
+	sleep ${frequency_check}m
+	{
+	ls -la ${dir_mon[@]}| grep -v ^total | grep -v "\ \.$" | grep -v "\ \.\."
+	}>> "$dir_report/rpfile2"
+	diff "$dir_report/rpfile2" "$dir_report/rpfile1"
+done
+
+
 tbegin=$(date +%s)
