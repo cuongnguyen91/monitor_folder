@@ -459,7 +459,7 @@ do
 	{
 	ls -la ${dir_mon[@]}| grep -v ^total | grep -v "\ \.$" | grep -v "\ \.\."
 	}>> "$dir_report/rpfile2"
-	diff "$dir_report/rpfile2" "$dir_report/rpfile1"
+	diff "${dir_report}/rpfile2" "${dir_report}/rpfile1" >> report.main
 done
 
 
