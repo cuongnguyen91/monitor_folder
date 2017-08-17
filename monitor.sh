@@ -459,7 +459,15 @@ do
 	{
 	ls -la ${dir_mon[@]}| grep -v ^total | grep -v "\ \.$" | grep -v "\ \.\."
 	}>> "$dir_report/rpfile2"
-	diff "${dir_report}/rpfile2" "${dir_report}/rpfile1" >> report.main
+#neu muon report khac voi output cua diff thi sua o day
+	diff "${dir_report}/rpfile2" "${dir_report}/rpfile1" > ${dir_report}/subreport
+	if [ $? -eq 0 ]
+	then
+		echo "" > ${dir_report}/rpfile2
+	esle
+#va day nua	
+			
+	fi 
 done
 
 
